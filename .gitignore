@@ -1,0 +1,12 @@
+# Benchmark results (generated, do not commit)
+benchmarks/results/*.json
+benchmarks/results/*.md
+!benchmarks/results/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+nul
