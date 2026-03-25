@@ -1,9 +1,26 @@
 # Private Access Scenarios
 
+## Choosing Between Quick Access and Enterprise Apps (Per-App Access)
+
+Before configuring Private Access, determine which publishing model fits the administrator's use case:
+
+| Criteria | Quick Access | Enterprise App (Per-App Access) |
+|---|---|---|
+| **Use case** | VPN replacement; broad network-level access | Publishing specific applications or servers |
+| **Network segments** | Wide IP ranges (e.g., `10.0.0.0/8`, `172.16.0.0/12`) or wildcard FQDNs (e.g., `*.corp.contoso.com`) | Specific IPs and ports (e.g., `10.0.1.10:443`, `10.0.2.20:3389`) |
+| **Granularity** | Single app with many segments — all-or-nothing access | One enterprise app per resource — granular user and policy assignment |
+| **Conditional Access** | One policy covers all Quick Access traffic | Per-app policies with different controls per resource |
+| **When to recommend** | Admin wants to replace a VPN or provide broad subnet access quickly | Admin wants to publish a specific app, database, or small set of servers |
+
+> [!IMPORTANT]
+> Default to **Enterprise App (Per-App Access)** when the administrator describes specific applications, individual servers, or discrete IP/port combinations. Only recommend **Quick Access** when the scenario is explicitly a VPN replacement, involves wide subnet ranges, or uses wildcard FQDNs.
+
+---
+
 ## Scenario: private-access-quick-access
 
-**Name:** Entra Private Access - Quick Access
-**Description:** Configure Quick Access to provide secure remote access to all private applications and resources through a single FQDN or IP range, replacing traditional VPN. Quick Access is the fastest way to enable private access for a broad set of resources.
+**Name:** Entra Private Access - Quick Access (VPN Replacement)
+**Description:** Configure Quick Access to replace traditional VPN by providing broad network-level access to private resources through wide IP ranges or wildcard FQDNs. Quick Access is appropriate when the goal is VPN replacement or when the administrator needs to publish entire subnets or wildcard domains. For publishing specific applications or servers with discrete IP/port combinations, use Per-App Access with individual enterprise applications instead.
 **Products:** Microsoft Entra Private Access, Global Secure Access
 **Complexity:** Medium
 **Estimated Time:** 45 minutes
@@ -145,8 +162,8 @@ flowchart LR
 
 ## Scenario: private-access-per-app
 
-**Name:** Entra Private Access - Per-App Access
-**Description:** Configure per-application access to provide granular, application-specific zero trust network access. Unlike Quick Access (which provides broad access), Per-App Access creates individual enterprise applications for each private resource with specific access controls.
+**Name:** Entra Private Access - Per-App Access (Enterprise Apps)
+**Description:** Configure per-application access by creating individual enterprise applications (private access apps) for specific resources with discrete IP/port combinations. This is the **recommended approach** when publishing specific applications, databases, or servers (e.g., `10.0.1.10:443`, `10.0.2.20:3389`). Each enterprise app gets its own user assignments and Conditional Access policy, enabling true zero trust per-resource access control. Use Quick Access only for VPN replacement scenarios involving wide IP ranges or wildcard FQDNs.
 **Products:** Microsoft Entra Private Access, Global Secure Access
 **Complexity:** High
 **Estimated Time:** 90 minutes
