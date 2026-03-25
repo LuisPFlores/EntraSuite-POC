@@ -95,7 +95,7 @@ def run_api_test(test_case: dict, skill_enabled: bool, model: str) -> dict:
 
 def _load_skill_as_system_prompt() -> str:
     """Load SKILL.md content as a system prompt for API testing."""
-    skill_path = Path(__file__).parent.parent / "entra-poc-assistant" / "SKILL.md"
+    skill_path = Path(__file__).parent.parent / ".github" / "skills" / "entra-poc-assistant" / "SKILL.md"
     if not skill_path.exists():
         print(f"WARNING: SKILL.md not found at {skill_path}", file=sys.stderr)
         return ""

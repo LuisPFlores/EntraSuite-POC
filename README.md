@@ -24,7 +24,7 @@ The assistant covers six Microsoft Entra Suite products:
 | **Entra ID Governance** | Access reviews, entitlement management, lifecycle workflows, Privileged Identity Management |
 | **Entra Verified ID** | Digital credential issuance and verification, decentralized identity flows |
 
-Detailed product references are available under [entra-poc-assistant/references/products/](entra-poc-assistant/references/products/).
+Detailed product references are available under [.github/skills/entra-poc-assistant/references/products/](.github/skills/entra-poc-assistant/references/products/).
 
 ## Operation Modes
 
@@ -39,7 +39,7 @@ You select an operation mode at the start of every session. The assistant never 
 > [!IMPORTANT]
 > Even in Read-Write mode, the assistant **never writes directly** to your tenant. All changes are performed by you — via PowerShell scripts you review and execute, or portal instructions you follow manually.
 
-See [entra-poc-assistant/references/operation-modes.md](entra-poc-assistant/references/operation-modes.md) for detailed mode transition rules.
+See [.github/skills/entra-poc-assistant/references/operation-modes.md](.github/skills/entra-poc-assistant/references/operation-modes.md) for detailed mode transition rules.
 
 ## POC Lifecycle
 
@@ -72,7 +72,7 @@ flowchart TD
 | **5. Testing** | Provides testing checklists and procedures. Validates test outcomes via MCP where possible (e.g., sign-in logs). |
 | **6. Documentation** | Exports the complete POC guide, architecture diagrams, gap analysis, and session audit log. |
 
-See [entra-poc-assistant/references/poc-lifecycle.md](entra-poc-assistant/references/poc-lifecycle.md) for detailed phase guidance.
+See [.github/skills/entra-poc-assistant/references/poc-lifecycle.md](.github/skills/entra-poc-assistant/references/poc-lifecycle.md) for detailed phase guidance.
 
 ## Pre-Built Scenarios
 
@@ -97,7 +97,7 @@ See [entra-poc-assistant/references/poc-lifecycle.md](entra-poc-assistant/refere
 
 You can also describe a **custom scenario** in natural language, and the assistant will structure it following the same schema.
 
-See [entra-poc-assistant/references/scenarios/](entra-poc-assistant/references/scenarios/) for full scenario definitions.
+See [.github/skills/entra-poc-assistant/references/scenarios/](.github/skills/entra-poc-assistant/references/scenarios/) for full scenario definitions.
 
 ## Conversation Templates
 
@@ -105,10 +105,10 @@ Four reusable conversation flows are available as starting points:
 
 | Template | When to Use |
 |---|---|
-| [POC Planning](entra-poc-assistant/references/prompts/poc-planning.md) | Starting a new POC — requirements gathering, product recommendations, scenario selection, timeline and effort estimates |
-| [Configuration Review](entra-poc-assistant/references/prompts/configuration-review.md) | Reviewing an existing deployment — identify components, read config via MCP, check against best practices, produce findings |
-| [Gap Analysis](entra-poc-assistant/references/prompts/gap-analysis.md) | Comparing current vs. target state — define target, read tenant config, classify gaps, prioritize remediation |
-| [Scenario Walkthrough](entra-poc-assistant/references/prompts/scenario-walkthrough.md) | Step-by-step guided configuration — overview, prerequisites, configuration steps with validation at each stage |
+| [POC Planning](.github/skills/entra-poc-assistant/references/prompts/poc-planning.md) | Starting a new POC — requirements gathering, product recommendations, scenario selection, timeline and effort estimates |
+| [Configuration Review](.github/skills/entra-poc-assistant/references/prompts/configuration-review.md) | Reviewing an existing deployment — identify components, read config via MCP, check against best practices, produce findings |
+| [Gap Analysis](.github/skills/entra-poc-assistant/references/prompts/gap-analysis.md) | Comparing current vs. target state — define target, read tenant config, classify gaps, prioritize remediation |
+| [Scenario Walkthrough](.github/skills/entra-poc-assistant/references/prompts/scenario-walkthrough.md) | Step-by-step guided configuration — overview, prerequisites, configuration steps with validation at each stage |
 
 ## Artifacts You Can Get
 
@@ -123,7 +123,7 @@ The assistant generates the following output artifacts on request:
 | **Audit Log** | Markdown + JSON | Complete session record of every MCP call, recommendation, warning, and generated artifact |
 | **Prerequisite Report** | Markdown | Pass/fail checklist for licenses, admin roles, and infrastructure with remediation guidance for each gap |
 
-Templates for these artifacts are available under [entra-poc-assistant/assets/templates/](entra-poc-assistant/assets/templates/).
+Templates for these artifacts are available under [.github/skills/entra-poc-assistant/assets/templates/](.github/skills/entra-poc-assistant/assets/templates/).
 
 ## Safety Guardrails
 
@@ -137,58 +137,60 @@ Seven absolute safety rules are enforced at all times and **cannot be overridden
 6. **No skipped audit trails** — Every MCP call, recommendation, and warning is logged
 7. **No broad-scope changes without warning** — Changes affecting all users, all apps, or tenant-wide settings trigger an explicit warning and confirmation prompt
 
-See [entra-poc-assistant/references/safety-guardrails.md](entra-poc-assistant/references/safety-guardrails.md) for detailed rules and warning triggers.
+See [.github/skills/entra-poc-assistant/references/safety-guardrails.md](.github/skills/entra-poc-assistant/references/safety-guardrails.md) for detailed rules and warning triggers.
 
 ## Repository Structure
 
 ```
-entra-poc-assistant/
-├── SKILL.md                          # Skill definition and core behavior
-├── assets/
-│   └── templates/                    # Output artifact templates
-│       ├── audit-log-template.md
-│       ├── gap-report-template.md
-│       ├── poc-guide-template.md
-│       └── powershell-template.ps1
-├── references/
-│   ├── documentation-standards.md    # Microsoft documentation style guide
-│   ├── operation-modes.md            # Mode definitions and transition rules
-│   ├── poc-lifecycle.md              # Six-phase lifecycle detailed guidance
-│   ├── powershell-standards.md       # PowerShell conventions and patterns
-│   ├── safety-guardrails.md          # Safety rules and warning triggers
-│   ├── products/                     # Product reference sheets
-│   │   ├── entra-id-governance.md
-│   │   ├── entra-id-protection.md
-│   │   ├── entra-internet-access.md
-│   │   ├── entra-private-access.md
-│   │   ├── entra-verified-id.md
-│   │   └── global-secure-access.md
-│   ├── prompts/                      # Conversation templates
-│   │   ├── configuration-review.md
-│   │   ├── gap-analysis.md
-│   │   ├── poc-planning.md
-│   │   └── scenario-walkthrough.md
-│   └── scenarios/                    # Pre-built POC scenarios
-│       ├── index.md
-│       ├── global-secure-access.md
-│       ├── governance.md
-│       ├── identity.md
-│       ├── internet-access.md
-│       └── private-access.md
-├── scripts/                          # Automation and validation scripts
-│   ├── audit-logger.py
-│   ├── Deploy-EmployeeGuestOnboarding.ps1
-│   ├── Deploy-PrivateAccessQuickAccess.ps1
-│   ├── generate-gap-report.py
-│   ├── validate-configuration.py
-│   └── validate-prerequisites.py
-benchmarks/                           # Automated benchmark suite
+.github/
+└── skills/
+    └── entra-poc-assistant/              # Copilot Skill (auto-discovered by VS Code)
+        ├── SKILL.md                      # Skill definition and core behavior
+        ├── assets/
+        │   └── templates/                # Output artifact templates
+        │       ├── audit-log-template.md
+        │       ├── gap-report-template.md
+        │       ├── poc-guide-template.md
+        │       └── powershell-template.ps1
+        ├── references/
+        │   ├── documentation-standards.md    # Microsoft documentation style guide
+        │   ├── operation-modes.md            # Mode definitions and transition rules
+        │   ├── poc-lifecycle.md              # Six-phase lifecycle detailed guidance
+        │   ├── powershell-standards.md       # PowerShell conventions and patterns
+        │   ├── safety-guardrails.md          # Safety rules and warning triggers
+        │   ├── products/                     # Product reference sheets
+        │   │   ├── entra-id-governance.md
+        │   │   ├── entra-id-protection.md
+        │   │   ├── entra-internet-access.md
+        │   │   ├── entra-private-access.md
+        │   │   ├── entra-verified-id.md
+        │   │   └── global-secure-access.md
+        │   ├── prompts/                      # Conversation templates
+        │   │   ├── configuration-review.md
+        │   │   ├── gap-analysis.md
+        │   │   ├── poc-planning.md
+        │   │   └── scenario-walkthrough.md
+        │   └── scenarios/                    # Pre-built POC scenarios
+        │       ├── index.md
+        │       ├── global-secure-access.md
+        │       ├── governance.md
+        │       ├── identity.md
+        │       ├── internet-access.md
+        │       └── private-access.md
+        └── scripts/                          # Automation and validation scripts
+            ├── audit-logger.py
+            ├── Deploy-EmployeeGuestOnboarding.ps1
+            ├── Deploy-PrivateAccessQuickAccess.ps1
+            ├── generate-gap-report.py
+            ├── validate-configuration.py
+            └── validate-prerequisites.py
+benchmarks/                                   # Automated benchmark suite
 ├── README.md
 ├── run_benchmark.py
 ├── compare_results.py
-├── evaluators/                       # Scoring evaluators
-├── scoring/                          # Rubrics
-└── test_cases/                       # Triggering, functional, performance tests
+├── evaluators/                               # Scoring evaluators
+├── scoring/                                  # Rubrics
+└── test_cases/                               # Triggering, functional, performance tests
 ```
 
 ## Benchmarks
@@ -203,20 +205,111 @@ An automated benchmark suite with **30 test cases** measures skill quality acros
 
 See [benchmarks/README.md](benchmarks/README.md) for setup instructions and execution modes.
 
-## Getting Started
+## Installation & Setup
 
-1. **Start a conversation** with GitHub Copilot in a context where this skill is available (e.g., VS Code with the skill installed, or a Copilot Chat workspace).
+Follow these steps to clone the repository, open it in VS Code, and start chatting with the Entra POC Assistant as a Copilot agent.
 
-2. **Mention an Entra POC topic** — for example:
+### Prerequisites
+
+| Requirement | Details |
+|---|---|
+| **VS Code** | Version 1.99 or later ([download](https://code.visualstudio.com/)) |
+| **GitHub Copilot subscription** | Copilot Pro, Business, or Enterprise ([plans](https://github.com/features/copilot#pricing)) |
+| **GitHub Copilot extension** | Install from the VS Code Marketplace — includes Copilot Chat ([install](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)) |
+| **Git** | Any recent version ([download](https://git-scm.com/downloads)) |
+| **Python 3.10+** *(optional)* | Only needed if you want to run the benchmark suite or utility scripts |
+
+### Step 1 — Clone the Repository
+
+```bash
+git clone https://github.com/<YOUR-ORG>/EntraSuite-POC.git
+```
+
+> Replace `<YOUR-ORG>` with the GitHub organization or username that hosts this repository.
+
+### Step 2 — Open in VS Code
+
+```bash
+cd EntraSuite-POC
+code .
+```
+
+Or in VS Code: **File → Open Folder…** and select the cloned `EntraSuite-POC` directory.
+
+### Step 3 — Verify the Skill Is Detected
+
+1. Open **Copilot Chat** — press `Ctrl+Alt+I` (Windows/Linux) or `Cmd+Alt+I` (macOS), or click the Copilot Chat icon in the Activity Bar.
+2. Type `/` in the chat input — you should see **entra-poc-assistant** listed as an available skill.
+3. Alternatively, just ask a relevant question like *"Help me plan a Global Secure Access POC"* — the skill activates automatically based on your prompt.
+
+> [!TIP]
+> If the skill does not appear, make sure the Copilot extension is up to date and the workspace is opened at the repository root (the folder containing `.github/`).
+
+### Step 4 — Start a Conversation
+
+1. **Mention an Entra POC topic** — for example:
    - *"I need to set up a Private Access POC to replace our VPN"*
    - *"What licenses do I need for Internet Access web content filtering?"*
    - *"Help me plan a Global Secure Access proof of concept"*
 
-3. **Select your operation mode** when prompted — Guidance Only, Read-Only, or Read-Write.
+2. **Select your operation mode** when prompted — Guidance Only, Read-Only, or Read-Write.
 
-4. **Have a conversation** — describe your goals, ask questions, explore options. The assistant acts as your Entra Suite SME.
+3. **Have a conversation** — describe your goals, ask questions, explore options. The assistant acts as your Entra Suite SME.
 
-5. **Request artifacts when ready** — say *"generate the POC guide"*, *"create the PowerShell scripts"*, or *"produce the gap analysis"* and the assistant will produce the outputs.
+4. **Request artifacts when ready** — say *"generate the POC guide"*, *"create the PowerShell scripts"*, or *"produce the gap analysis"* and the assistant will produce the outputs.
+
+### Optional: Connect the Microsoft MCP Server for Enterprise
+
+Read-Only and Read-Write modes require a connection to the **Microsoft MCP Server for Enterprise** so the assistant can read your tenant configuration in real time. Guidance Only mode works without any MCP setup.
+
+#### 1. Add the MCP server configuration
+
+Create (or update) the file `.vscode/mcp.json` in the repository root with the following structure:
+
+```jsonc
+// .vscode/mcp.json
+{
+  "servers": {
+    "microsoft-graph-enterprise": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@microsoft/mcp-server-enterprise"
+      ]
+    }
+  }
+}
+```
+
+> [!NOTE]
+> The exact package name and arguments may vary. Refer to the [Microsoft MCP Server for Enterprise documentation](https://aka.ms/mcp-server-enterprise) for the latest installation instructions and authentication requirements.
+
+#### 2. Authenticate
+
+When you first use the MCP server, you will be prompted to sign in with your Microsoft Entra ID credentials. The account must have at least **read access** to the Entra resources you want to inspect (e.g., Global Reader, Security Reader, or equivalent roles).
+
+#### 3. Verify the connection
+
+In Copilot Chat, ask the assistant:
+
+> *"Can you check how many users are in my tenant?"*
+
+If the MCP server is connected and authenticated, the assistant will query the Microsoft Graph API and return the result. If it fails, check that:
+- The MCP server process started successfully (look for errors in the VS Code Output panel under the MCP server channel)
+- Your Entra ID credentials are valid and have the required permissions
+- Your network allows outbound connections to `graph.microsoft.com`
+
+## Quick Start
+
+```text
+You:        "I want to set up a Private Access POC to replace our legacy VPN."
+Assistant:   Asks clarifying questions — environment, user scope, existing infrastructure…
+You:        "We have 50 pilot users, Entra P2 + GSA licenses, hybrid-joined devices."
+Assistant:   Recommends the Quick Access scenario, walks through prerequisites…
+You:        "Sounds good. Generate the POC guide."
+Assistant:   Produces the full Markdown guide with numbered steps, validation checks, and architecture diagram.
+```
 
 ## License
 

@@ -1,0 +1,17 @@
+// Microsoft MCP Server for Enterprise — required for Read-Only and Read-Write modes.
+// See: https://aka.ms/mcp-server-enterprise
+//
+// Guidance Only mode works without this configuration.
+// Update the "command" and "args" below if Microsoft publishes a different package name.
+{
+  "servers": {
+    "microsoft-graph-enterprise": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@microsoft/mcp-server-enterprise"
+      ]
+    }
+  }
+}
