@@ -207,7 +207,7 @@ See [benchmarks/README.md](benchmarks/README.md) for setup instructions and exec
 
 ## Installation & Setup
 
-Follow these steps to clone the repository, open it in VS Code, and start chatting with the Entra POC Assistant as a Copilot agent.
+Choose one of the two installation options below, then verify the skill is detected.
 
 ### Prerequisites
 
@@ -217,9 +217,65 @@ Follow these steps to clone the repository, open it in VS Code, and start chatti
 | **GitHub Copilot subscription** | Copilot Pro, Business, or Enterprise ([plans](https://github.com/features/copilot#pricing)) |
 | **GitHub Copilot extension** | Install from the VS Code Marketplace — includes Copilot Chat ([install](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)) |
 | **Git** | Any recent version ([download](https://git-scm.com/downloads)) |
+| **Node.js 18+** | Required for Option A — includes `npm` and `npx` ([download](https://nodejs.org/)) |
 | **Python 3.10+** *(optional)* | Only needed if you want to run the benchmark suite or utility scripts |
 
-### Step 1 — Clone the Repository
+---
+
+### Option A — Install via Skills CLI (recommended)
+
+The [skills CLI](https://www.npmjs.com/package/skills) is an open-source tool that installs agent skills to 40+ coding agents — including GitHub Copilot, Claude Code, Cursor, Codex, and more.
+
+Run a single command to install the **entra-poc-assistant** skill:
+
+```bash
+npx skills add https://github.com/LuisPFlores/EntraSuite-POC
+```
+
+The CLI auto-detects the coding agents installed on your machine and prompts you to select where to install the skill.
+
+#### Targeting a specific agent
+
+To install only for GitHub Copilot:
+
+```bash
+npx skills add https://github.com/LuisPFlores/EntraSuite-POC -a github-copilot
+```
+
+#### Global installation
+
+Add `-g` to make the skill available across all your projects (installed to `~/.copilot/skills/`):
+
+```bash
+npx skills add https://github.com/LuisPFlores/EntraSuite-POC -a github-copilot -g
+```
+
+#### Other useful commands
+
+```bash
+# List available skills in the repo without installing
+npx skills add https://github.com/LuisPFlores/EntraSuite-POC --list
+
+# List installed skills
+npx skills list
+
+# Check for updates
+npx skills check
+
+# Update to the latest version
+npx skills update
+```
+
+> [!TIP]
+> For GitHub Copilot, project-level skills are installed to `.agents/skills/` in your workspace. Global skills go to `~/.copilot/skills/`.
+
+Once installed, skip to [Verify the Skill Is Detected](#step-3--verify-the-skill-is-detected).
+
+---
+
+### Option B — Clone the Repository Manually
+
+#### Step 1 — Clone
 
 ```bash
 git clone https://github.com/<YOUR-ORG>/EntraSuite-POC.git
@@ -227,7 +283,7 @@ git clone https://github.com/<YOUR-ORG>/EntraSuite-POC.git
 
 > Replace `<YOUR-ORG>` with the GitHub organization or username that hosts this repository.
 
-### Step 2 — Open in VS Code
+#### Step 2 — Open in VS Code
 
 ```bash
 cd EntraSuite-POC
@@ -235,6 +291,8 @@ code .
 ```
 
 Or in VS Code: **File → Open Folder…** and select the cloned `EntraSuite-POC` directory.
+
+---
 
 ### Step 3 — Verify the Skill Is Detected
 
